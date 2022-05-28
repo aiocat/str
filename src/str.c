@@ -8,10 +8,10 @@
 #include "str.h"
 
 struct str* 
-new_str() {
+str_new() {
     // create new str
     struct str* str = malloc(sizeof(struct str));
-    str->capacity = STR_CAP_S + 1;
+    str->capacity = STR_CAP_S;
     str->length = 0;
     str->memory = malloc(str->capacity);
 
@@ -24,19 +24,39 @@ new_str() {
     return str;
 }
 
-void
-push_cstr(struct str* str, const char* cstr) {
+uint8_t
+str_push(struct str* str, const char* cstr) {
     // read c-style string and append to str
     size_t length = 0;
     for (; cstr[length] != '\0'; length++) {
         size_t avaible_mem = str->capacity - str->length;
 
-        if (avaible_mem == 0 || avaible_mem == 1) {
+        if (avaible_mem <= 1) {
             str->capacity += STR_CAP_S;
-            str->memory = realloc(str->memory, str->capacity);
+            char* reallocted = realloc(str->memory, str->capacity);
+
+            if (reallocted == NULL) {
+                *(str->memory + (str->length)) = 0;
+                return 0;
+            }
+
+            str->memory = reallocted;
         }
         
         // push character
-        strcpy(str->memory + (str->length++), &cstr[length]);
+        *(str->memory + (str->length++)) = cstr[length];
     }
+
+    *(str->memory + (str->length)) = 0;
+    return 1;
+}
+
+const char
+str_pop(struct str* str) {
+    str->length--;
+
+    const char variable = str->memory[str->length];
+    str->memory[str->length] = 0;
+
+    return variable;
 }

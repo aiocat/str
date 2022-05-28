@@ -7,7 +7,6 @@
 #define STR_H
 
 #include <stdint.h>
-#include <string.h>
 #include <stdlib.h>
 
 // define string capacity size
@@ -24,10 +23,14 @@ struct str {
 
 // create new empty string. will return null if malloc fails.
 struct str* 
-new_str();
+str_new();
 
 // push c-style string. will realloc if too big for struct.
-void
-push_str(struct str* str, const char* cstr);
+uint8_t
+str_push(struct str* str, const char* cstr);
+
+// removes last string and returns it
+const char
+str_pop(struct str* str);
 
 #endif /* STR_H */

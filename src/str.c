@@ -13,7 +13,7 @@ struct str *str_new()
     struct str *str = malloc(sizeof(struct str));
 
     // check if null
-    if(str == NULL)
+    if (str == NULL)
         return NULL;
 
     str->capacity = sizeof(char) * STR_CAP_S;
@@ -67,7 +67,7 @@ char str_pop(struct str *str)
     if (str->length == 0)
         return 0;
 
-    char variable = str->memory[str->length--];
+    char variable = str->memory[--str->length];
     str->memory[str->length] = 0;
 
     return variable;
@@ -109,7 +109,7 @@ struct str *str_from(const char *cstr)
 
 uint8_t str_is_empty(const struct str *str)
 {
-    return str->length == 0 ? 1 : 0;
+    return str->length == 0;
 }
 
 char str_at(struct str *str, size_t index)
@@ -123,11 +123,10 @@ char str_at(struct str *str, size_t index)
 
 char str_remove_at(struct str *str, size_t index)
 {
-    // check index size
-    if (index >= str->length)
-        return 0;
-
     char will_deleted = str_at(str, index);
+
+    if (will_deleted == 0)
+        return 0;
 
     // remove index and decrease length
     memmove(&str->memory[index], &str->memory[index + 1], str->length - index);

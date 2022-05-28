@@ -19,10 +19,8 @@ int main(void) {
     struct str* string = str_from("damn");
     debug(string)
 
-    str_remove_at(string, 2);
-    debug(string)
-
-    str_push(string, "\ndeneme osuruk");
+    printf("%c\n", str_pop(string));
+    
     debug(string)
 
     str_free(string);

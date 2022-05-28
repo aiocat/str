@@ -15,12 +15,15 @@
 #define STR_CAP_S 1024
 #endif
 
+#define _STR_BUF_S sizeof(char) * STR_CAP_S
+#define _STR_S sizeof(struct str)
+
 // This struct is contains allocted memory, length and capacity.
 struct str
 {
-    char *memory;    // for string memory.
     size_t length;   // for string length.
     size_t capacity; // for memory capacity.
+    char memory[];    // for string memory.
 };
 
 // create new empty string. will return null if fails.

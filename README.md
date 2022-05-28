@@ -6,4 +6,4 @@
 -->
 
 # Str
-C implementation 
+Fast and flexible C library for string manupilation. _work in progress_

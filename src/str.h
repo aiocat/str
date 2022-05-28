@@ -25,7 +25,7 @@ struct str {
 struct str* str_new();
 
 // create string from c-style string. will return null if fails.
-struct str* str_from();
+struct str* str_from(const char* cstr);
 
 // push c-style string. will realloc if too big for struct. returns 1 (one) if function returns successfully, otherwise it will return 0 (zero).
 uint8_t str_push(struct str* str, const char* cstr);

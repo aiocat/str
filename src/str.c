@@ -11,6 +11,11 @@ struct str *str_new()
 {
     // create new str
     struct str *str = malloc(sizeof(struct str));
+
+    // check if null
+    if(str == NULL)
+        return NULL;
+
     str->capacity = sizeof(char) * STR_CAP_S;
     str->length = 0;
     str->memory = malloc(str->capacity);
@@ -18,6 +23,7 @@ struct str *str_new()
     // check if null
     if (str->memory == NULL)
     {
+        free(str);
         return NULL;
     }
 
@@ -59,9 +65,7 @@ char str_pop(struct str *str)
 {
     // check if string empty
     if (str->length == 0)
-    {
         return 0;
-    }
 
     char variable = str->memory[str->length--];
     str->memory[str->length] = 0;
@@ -73,9 +77,7 @@ char str_last(struct str *str)
 {
     // check if string empty
     if (str->length == 0)
-    {
         return 0;
-    }
 
     return str->memory[str->length - 1];
 }
@@ -96,38 +98,25 @@ struct str *str_from(const char *cstr)
 
     // check if null
     if (string == NULL)
-    {
         return NULL;
-    }
 
     // push string
     if (str_push(string, cstr) == 0)
-    {
         return NULL;
-    }
 
     return string;
 }
 
 uint8_t str_is_empty(const struct str *str)
 {
-    if (str->length == 0)
-    {
-        return 1;
-    }
-    else
-    {
-        return 0;
-    }
+    return str->length == 0 ? 1 : 0;
 }
 
 char str_at(struct str *str, size_t index)
 {
     // check index size
     if (index >= str->length)
-    {
         return 0;
-    }
 
     return str->memory[index];
 }
@@ -136,16 +125,13 @@ char str_remove_at(struct str *str, size_t index)
 {
     // check index size
     if (index >= str->length)
-    {
         return 0;
-    }
 
     char will_deleted = str_at(str, index);
 
     // remove index and decrease length
     char *clone;
-    for (clone = (str->memory) + index; *clone != '\0'; *clone = *(clone + 1), ++clone)
-        ;
+    for (clone = (str->memory) + index; *clone != '\0'; *clone = *(clone + 1), ++clone);
     *clone = '\0';
     str->length--;
 

@@ -27,10 +27,10 @@ struct str
     char *memory;    // for string memory.
 };
 
-// create new empty string. will return null if fails.
+// create new empty string. will return null if fail.
 struct str *str_new();
 
-// create string from c-style string. will return null if fails.
+// create string from c-style string. will return null if fail.
 struct str *str_from(const char *cstr);
 
 // push c-style string. will realloc if too big for struct. returns 1 (one) if function returns successfully, otherwise it will return 0 (zero).
@@ -54,14 +54,14 @@ size_t str_length(const struct str *str);
 // return string capacity.
 size_t str_capacity(const struct str *str);
 
-// get character by index and return it. will return -1 if fails.
+// get character by index and return it. will return -1 if fail.
 char str_at(const struct str *str, size_t index);
 
-// remove character in given index and return it. will return -1 if fails.
+// remove character in given index and return it. will return -1 if fail.
 char str_remove_at(struct str *str, size_t index);
 
-// find a character and return the index. will return -1 if fails.
-char str_remove_at(struct str *str, size_t index);
+// find a character and return the index. will return 0 (zero) if fail.
+size_t str_find(struct str *str, char character);
 
 // reverse a string.
 void str_reverse(struct str *str);

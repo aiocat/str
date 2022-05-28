@@ -20,11 +20,10 @@ int main(void)
     struct str *string = str_from("  damn\t");
     debug(string)
 
-    printf("%c\n", str_remove_at(string, 2));
-    debug(string)
-
     str_trim(string);
     debug(string)
+
+    printf("index: %zu\n", (size_t)str_find(string, 'n'));
 
     str_free(string);
 }

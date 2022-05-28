@@ -126,6 +126,15 @@ void str_trim(struct str *str)
     memmove(str->memory, temp, str->length + 1);
 }
 
+size_t str_find(struct str *str, char character)
+{
+    for (size_t index = 0; str->memory[index] != '\0'; index++)
+        if (str->memory[index] == character)
+            return index;
+
+    return 0;
+}
+
 uint8_t str_is_empty(const struct str *str)
 {
     return str->length == 0;

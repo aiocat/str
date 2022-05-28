@@ -114,6 +114,18 @@ void str_reverse(struct str *str)
     }
 }
 
+void str_trim(struct str *str)
+{
+    char *temp = str->memory;
+
+    while (isspace(temp[str->length - 1]))
+        temp[--str->length] = 0;
+    while (*temp && isspace(*temp))
+        ++temp, --str->length;
+
+    memmove(str->memory, temp, str->length + 1);
+}
+
 uint8_t str_is_empty(const struct str *str)
 {
     return str->length == 0;

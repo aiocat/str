@@ -9,6 +9,7 @@
 #include <stdint.h>
 #include <stdlib.h>
 #include <string.h>
+#include <ctype.h>
 
 // define string capacity size
 #ifndef STR_CAP_S
@@ -64,5 +65,8 @@ char str_remove_at(struct str *str, size_t index);
 
 // reverse a string.
 void str_reverse(struct str *str);
+
+// remove whitespaces from starting and endings.
+void str_trim(struct str *str);
 
 #endif /* STR_H */

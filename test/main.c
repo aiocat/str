@@ -17,16 +17,13 @@
 
 int main(void)
 {
-    struct str *string = str_from("damn");
+    struct str *string = str_from("  damn\t");
     debug(string)
 
     printf("%c\n", str_remove_at(string, 2));
     debug(string)
 
-    str_push(string, "sus mal!");
-    debug(string)
-
-    str_reverse(string);
+    str_trim(string);
     debug(string)
 
     str_free(string);

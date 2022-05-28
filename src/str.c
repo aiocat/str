@@ -45,7 +45,7 @@ uint8_t str_push(struct str *str, const char *cstr)
 
             if (reallocted == NULL)
             {
-                *(str->memory + (str->length)) = 0;
+                str->memory[str->length] = 0;
                 return 0;
             }
 
@@ -53,11 +53,11 @@ uint8_t str_push(struct str *str, const char *cstr)
         }
 
         // push character
-        *(str->memory + (str->length++)) = cstr[length];
+        str->memory[str->length++] = cstr[length];
     }
 
     // set \0
-    *(str->memory + (str->length)) = 0;
+    str->memory[str->length] = 0;
     return 1;
 }
 
@@ -130,9 +130,7 @@ char str_remove_at(struct str *str, size_t index)
     char will_deleted = str_at(str, index);
 
     // remove index and decrease length
-    char *clone;
-    for (clone = (str->memory) + index; *clone != '\0'; *clone = *(clone + 1), ++clone);
-    *clone = '\0';
+    memmove(&str->memory[index], &str->memory[index + 1], str->length - index);
     str->length--;
 
     return will_deleted;

@@ -22,5 +22,8 @@ int main(void) {
     str_remove_at(string, 2);
     debug(string)
 
+    str_push(string, "\ndeneme osuruk");
+    debug(string)
+
     str_free(string);
 }

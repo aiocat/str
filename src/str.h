@@ -35,10 +35,10 @@ struct str *str_from(const char *cstr);
 // push c-style string. will realloc if too big for struct. returns 1 (one) if function returns successfully, otherwise it will return 0 (zero).
 uint8_t str_push(struct str *str, const char *cstr);
 
-// remove last char and return it. returns \0 (zero) if string is empty.
+// remove last char and return it. returns -1 if string is empty.
 char str_pop(struct str *str);
 
-// get last char and return it. returns \0 (zero) if string is empty.
+// get last char and return it. returns -1 if string is empty.
 char str_last(struct str *str);
 
 // safely de-alloc string from memory. use this when all of the operations done.
@@ -53,10 +53,13 @@ size_t str_length(const struct str *str);
 // return string capacity.
 size_t str_capacity(const struct str *str);
 
-// get character by index and return it. will return \0 (zero) if fails.
+// get character by index and return it. will return -1 if fails.
 char str_at(struct str *str, size_t index);
 
-// remove character in given index and return it. will return \0 (zero) if fails.
+// remove character in given index and return it. will return -1 if fails.
+char str_remove_at(struct str *str, size_t index);
+
+// find a character and return the index. will return -1 if fails.
 char str_remove_at(struct str *str, size_t index);
 
 #endif /* STR_H */

@@ -52,7 +52,7 @@ char str_pop(struct str *str)
 {
     // check if string empty
     if (str->length == 0)
-        return 0;
+        return -1;
 
     char variable = str->memory[--str->length];
     str->memory[str->length] = 0;
@@ -64,7 +64,7 @@ char str_last(struct str *str)
 {
     // check if string empty
     if (str->length == 0)
-        return 0;
+        return -1;
 
     return str->memory[str->length - 1];
 }
@@ -97,11 +97,11 @@ uint8_t str_is_empty(const struct str *str)
     return str->length == 0;
 }
 
-char str_at(struct str *str, size_t index)
+char str_at(const struct str *str, size_t index)
 {
     // check index size
     if (index >= str->length)
-        return 0;
+        return -1;
 
     return str->memory[index];
 }
@@ -111,7 +111,7 @@ char str_remove_at(struct str *str, size_t index)
     char will_deleted = str_at(str, index);
 
     if (will_deleted == 0)
-        return 0;
+        return -1;
 
     // remove index and decrease length
     memmove(&str->memory[index], &str->memory[index + 1], str->length - index);

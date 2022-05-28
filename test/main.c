@@ -28,4 +28,7 @@ main(void) {
 
     str_push(string, "qweqweqweqwewqewqewqeewqwqewqewqewqe!");
     debug(string)
+
+    str_free(string);
+    debug(string)
 }

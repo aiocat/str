@@ -11,7 +11,7 @@ struct str*
 str_new() {
     // create new str
     struct str* str = malloc(sizeof(struct str));
-    str->capacity = STR_CAP_S;
+    str->capacity = sizeof(char) * STR_CAP_S;
     str->length = 0;
     str->memory = malloc(str->capacity);
 
@@ -33,7 +33,7 @@ str_push(struct str* str, const char* cstr) {
 
         if (avaible_mem <= 1) {
             str->capacity += STR_CAP_S;
-            char* reallocted = realloc(str->memory, str->capacity);
+            char* reallocted = realloc(str->memory, sizeof(char) * str->capacity);
 
             if (reallocted == NULL) {
                 *(str->memory + (str->length)) = 0;
@@ -59,4 +59,13 @@ str_pop(struct str* str) {
     str->memory[str->length] = 0;
 
     return variable;
+}
+
+void
+str_free(struct str* str) {
+    str->capacity = 0;
+    str->length = 0;
+    
+    free(str->memory);
+    free(str);
 }

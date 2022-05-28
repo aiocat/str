@@ -84,6 +84,7 @@ void str_free(struct str *str)
 {
     str->capacity = 0;
     str->length = 0;
+    free(str->memory);
     free(str);
 }
 

@@ -20,14 +20,14 @@ int main(void)
     struct str *string = str_from("damn");
     debug(string)
 
-        printf("%c\n", str_pop(string));
+    printf("%c\n", str_remove_at(string, 2));
     debug(string)
 
-        str_push(string, "dneeme qwe asd q weasd qwe");
+    str_push(string, "sus mal!");
     debug(string)
 
-        str_push(string, "sus mal!");
+    str_reverse(string);
     debug(string)
 
-        str_free(string);
+    str_free(string);
 }

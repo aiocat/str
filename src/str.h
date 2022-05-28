@@ -62,4 +62,7 @@ char str_remove_at(struct str *str, size_t index);
 // find a character and return the index. will return -1 if fails.
 char str_remove_at(struct str *str, size_t index);
 
+// reverse a string.
+void str_reverse(struct str *str);
+
 #endif /* STR_H */

@@ -104,6 +104,16 @@ struct str *str_from(const char *cstr)
     return string;
 }
 
+void str_reverse(struct str *str)
+{
+    for (size_t index = 0; index < str->length / 2; index++)
+    {
+        str->memory[index] ^= str->memory[str->length - index - 1];
+        str->memory[str->length - index - 1] ^= str->memory[index];
+        str->memory[index] ^= str->memory[str->length - index - 1];
+    }
+}
+
 uint8_t str_is_empty(const struct str *str)
 {
     return str->length == 0;

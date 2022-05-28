@@ -17,5 +17,12 @@
 
 int main(void) {
     struct str* string = str_from("damn");
-    printf("%zu - %zu", str_length(string), str_capacity(string));
+    debug(string)
+    printf("%c - %zu - %zu\n", str_last(string), str_length(string), str_capacity(string));
+
+    str_push(string, " naberr?");
+    debug(string)
+    printf("%c - %zu - %zu\n", str_last(string), str_length(string), str_capacity(string));
+
+    str_free(string);
 }

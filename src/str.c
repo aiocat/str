@@ -30,8 +30,8 @@ uint8_t str_push(struct str* str, const char* cstr) {
         // re-alloc if no memory avaible for next push
         size_t avaible_mem = str->capacity - str->length;
         if (avaible_mem <= 1) {
-            str->capacity += STR_CAP_S;
-            char* reallocted = realloc(str->memory, sizeof(char) * str->capacity);
+            str->capacity += sizeof(char) * STR_CAP_S;
+            char* reallocted = realloc(str->memory, str->capacity);
 
             if (reallocted == NULL) {
                 *(str->memory + (str->length)) = 0;
@@ -56,12 +56,19 @@ const char str_pop(struct str* str) {
         return 0;
     }
 
-    str->length--;
-
-    const char variable = str->memory[str->length];
+    const char variable = str->memory[str->length--];
     str->memory[str->length] = 0;
 
     return variable;
+}
+
+const char str_last(struct str* str) {
+    // check if string empty
+    if (str_is_empty(str) == 1) {
+        return 0;
+    }
+
+    return str->memory[str->length - 1];
 }
 
 void str_free(struct str* str) {

@@ -5,11 +5,13 @@
 cd test
 
 echo Testing for CLANG
-clang main.c -o main.exe
+clang -std=c99 main.c -o main.exe
 .\main.exe
 
+pause
+
 echo Testing for GCC
-gcc main.c -o main.exe
+gcc -std=c99 main.c -o main.exe
 .\main.exe
 
 cd ..

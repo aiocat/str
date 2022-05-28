@@ -17,7 +17,7 @@
 
 int
 main(void) {
-    struct str* string = str_new();
+    struct str* string = str_from("deneme");
 
     str_push(string, "asd");
     debug(string)
@@ -26,9 +26,8 @@ main(void) {
     printf("popped: %c\n", popped);
     debug(string)
 
-    str_push(string, "qweqweqweqwewqewqewqeewqwqewqewqewqe!");
+    str_push(string, "qwe!");
     debug(string)
 
     str_free(string);
-    debug(string)
 }

@@ -18,11 +18,9 @@
 int main(void) {
     struct str* string = str_from("damn");
     debug(string)
-    printf("%c - %zu - %zu\n", str_last(string), str_length(string), str_capacity(string));
 
-    str_push(string, " naberr?");
+    str_remove_at(string, 2);
     debug(string)
-    printf("%c - %zu - %zu\n", str_last(string), str_length(string), str_capacity(string));
 
     str_free(string);
 }

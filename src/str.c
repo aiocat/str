@@ -25,8 +25,7 @@ struct str* str_new() {
 
 uint8_t str_push(struct str* str, const char* cstr) {
     // read c-style string and append to str
-    size_t length = 0;
-    for (; cstr[length] != '\0'; length++) {
+    for (size_t length = 0; cstr[length] != '\0'; length++) {
         // re-alloc if no memory avaible for next push
         size_t avaible_mem = str->capacity - str->length;
         if (avaible_mem <= 1) {
@@ -50,21 +49,21 @@ uint8_t str_push(struct str* str, const char* cstr) {
     return 1;
 }
 
-const char str_pop(struct str* str) {
+char str_pop(struct str* str) {
     // check if string empty
-    if (str_is_empty(str) == 1) {
+    if (str->length == 0) {
         return 0;
     }
 
-    const char variable = str->memory[str->length--];
+    char variable = str->memory[str->length--];
     str->memory[str->length] = 0;
 
     return variable;
 }
 
-const char str_last(struct str* str) {
+char str_last(struct str* str) {
     // check if string empty
-    if (str_is_empty(str) == 1) {
+    if (str->length == 0) {
         return 0;
     }
 
@@ -102,6 +101,33 @@ uint8_t str_is_empty(const struct str* str) {
     } else {
         return 0;
     }
+}
+
+char str_at(struct str* str, size_t index) {
+    // check index size
+    if (index >= str->length) {
+        return 0;
+    }
+    
+    return str->memory[index];
+}
+
+char str_remove_at(struct str* str, size_t index) {
+    // check index size
+    if (index >= str->length) {
+        return 0;
+    }
+
+    char will_deleted = str_at(str, index);
+
+    // remove index and decrease length
+    char *clone;
+    for (clone = (str->memory)+index; *clone != '\0'; *clone = *(clone+1), ++clone);
+    *clone = '\0';
+    str->length--;
+
+    
+    return will_deleted;
 }
 
 size_t str_length(const struct str* str) {

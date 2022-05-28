@@ -23,7 +23,7 @@ struct str
 {
     size_t length;   // for string length.
     size_t capacity; // for memory capacity.
-    char memory[];    // for string memory.
+    char *memory;    // for string memory.
 };
 
 // create new empty string. will return null if fails.
@@ -54,7 +54,7 @@ size_t str_length(const struct str *str);
 size_t str_capacity(const struct str *str);
 
 // get character by index and return it. will return -1 if fails.
-char str_at(struct str *str, size_t index);
+char str_at(const struct str *str, size_t index);
 
 // remove character in given index and return it. will return -1 if fails.
 char str_remove_at(struct str *str, size_t index);

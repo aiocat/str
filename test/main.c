@@ -1,6 +1,6 @@
 /**
  * Copyright (c) 2022 aiocat
- * 
+ *
  * This software is released under the MIT License.
  * https://opensource.org/licenses/MIT
  */
@@ -9,19 +9,25 @@
 #define STR_CAP_S 10
 #include "../src/str.c"
 
-#define debug(x) \
-    printf("string: %s\n", x->memory); \
-    printf("cap: %zu\n", x->capacity); \
+#define debug(x)                        \
+    printf("string: %s\n", x->memory);  \
+    printf("cap: %zu\n", x->capacity);  \
     printf("length: %zu\n", x->length); \
-    puts("----------------------------------------"); \
+    puts("----------------------------------------");
 
-int main(void) {
-    struct str* string = str_from("damn");
+int main(void)
+{
+    struct str *string = str_from("damn");
     debug(string)
 
-    printf("%c\n", str_pop(string));
-    
+        printf("%c\n", str_pop(string));
     debug(string)
 
-    str_free(string);
+        str_push(string, "dneeme qwe asd q weasd qwe");
+    debug(string)
+
+        str_push(string, "sus mal!");
+    debug(string)
+
+        str_free(string);
 }

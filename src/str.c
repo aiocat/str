@@ -10,7 +10,7 @@
 struct str *str_new()
 {
     // create new str
-    struct str *str = malloc(_STR_S + _STR_BUF_S);
+    struct str *str = malloc(_STR_S);
 
     // check if null
     if (str == NULL)
@@ -18,8 +18,16 @@ struct str *str_new()
 
     str->capacity = _STR_BUF_S;
     str->length = 0;
-    *str->memory = 0;
+    str->memory = malloc(str->capacity);
 
+    // check if null
+    if (str->memory == NULL)
+    {
+        free(str);
+        return NULL;
+    }
+
+    *str->memory = 0;
     return str;
 }
 
@@ -33,10 +41,13 @@ uint8_t str_push(struct str *str, const char *cstr)
         if (avaible_mem <= 1)
         {
             str->capacity += _STR_BUF_S;
-            str = realloc(str, str->capacity + _STR_S);
+            str->memory = realloc(str->memory, str->capacity);
 
-            if (str == NULL)
+            if (str->memory == NULL)
+            {
+                str->memory[str->length] = 0;
                 return 0;
+            }
         }
 
         // push character

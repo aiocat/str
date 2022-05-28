@@ -51,6 +51,11 @@ uint8_t str_push(struct str* str, const char* cstr) {
 }
 
 const char str_pop(struct str* str) {
+    // check if string empty
+    if (str_is_empty(str) == 1) {
+        return 0;
+    }
+
     str->length--;
 
     const char variable = str->memory[str->length];
@@ -82,4 +87,12 @@ struct str* str_from(const char* cstr) {
     }
 
     return string;
+}
+
+uint8_t str_is_empty(const struct str* str) {
+    if (str->length == 0) {
+        return 1;
+    } else {
+        return 0;
+    }
 }

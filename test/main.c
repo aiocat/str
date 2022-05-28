@@ -17,17 +17,21 @@
 
 int
 main(void) {
-    struct str* string = str_from("deneme");
-
-    str_push(string, "asd");
+    struct str* string = str_from("damn");
     debug(string)
 
-    char popped = str_pop(string);
-    printf("popped: %c\n", popped);
+    printf("%zu", str_is_empty(string));
+
+    str_pop(string);
+    str_pop(string);
+    str_pop(string);
+    str_pop(string);
+    
     debug(string)
 
     str_push(string, "qwe!");
     debug(string)
+    printf("%zu", str_is_empty(string));
 
     str_free(string);
 }

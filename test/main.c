@@ -15,23 +15,7 @@
     printf("length: %zu\n", x->length); \
     puts("----------------------------------------"); \
 
-int
-main(void) {
+int main(void) {
     struct str* string = str_from("damn");
-    debug(string)
-
-    printf("%zu", str_is_empty(string));
-
-    str_pop(string);
-    str_pop(string);
-    str_pop(string);
-    str_pop(string);
-    
-    debug(string)
-
-    str_push(string, "qwe!");
-    debug(string)
-    printf("%zu", str_is_empty(string));
-
-    str_free(string);
+    printf("%zu - %zu", str_length(string), str_capacity(string));
 }

@@ -39,4 +39,10 @@ void str_free(struct str* str);
 // check if string is empty. will return 1 (one) if empty, otherwise it will return 0 (zero).
 uint8_t str_is_empty(const struct str* str);
 
+// return string length. this operation is O(1).
+size_t str_length(const struct str* str);
+
+// return string capacity. this operation is O(1).
+size_t str_capacity(const struct str* str);
+
 #endif /* STR_H */

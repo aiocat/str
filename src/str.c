@@ -96,3 +96,11 @@ uint8_t str_is_empty(const struct str* str) {
         return 0;
     }
 }
+
+size_t str_length(const struct str* str) {
+    return str->length;
+}
+
+size_t str_capacity(const struct str* str) {
+    return str->capacity;
+}

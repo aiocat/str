@@ -106,6 +106,9 @@ struct str *str_from(const char *cstr)
 
 void str_reverse(struct str *str)
 {
+    if (str->length == 0) 
+        return;
+        
     for (size_t index = 0; index < str->length / 2; index++)
     {
         str->memory[index] ^= str->memory[str->length - index - 1];
@@ -116,6 +119,9 @@ void str_reverse(struct str *str)
 
 void str_trim(struct str *str)
 {
+    if (str->length == 0) 
+        return;
+
     char *temp = str->memory;
 
     while (isspace(temp[str->length - 1]))
